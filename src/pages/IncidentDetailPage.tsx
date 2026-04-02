@@ -1,8 +1,8 @@
 import { useApp } from '@/context/AppContext';
 import { useParams, Link } from 'react-router-dom';
-import { Shield, ArrowLeft, Zap, User, Clock, AlertTriangle } from 'lucide-react';
+import { Shield, ArrowLeft, Zap, User, Clock, AlertTriangle, Target, Gauge, TrendingUp, BarChart3, ShieldAlert } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { SeverityBadge, StatusBadge } from '@/pages/DashboardPage';
+import { SeverityBadge, StatusBadge, ThreatBadge } from '@/pages/DashboardPage';
 import { playbooks } from '@/data/playbooks';
 
 const IncidentDetailPage = () => {
@@ -23,6 +23,7 @@ const IncidentDetailPage = () => {
   }
 
   const playbook = playbooks.find(p => p.incidentType === incident.type);
+  const m = incident.metrics;
 
   return (
     <div className="min-h-screen cyber-grid-bg">
@@ -43,6 +44,7 @@ const IncidentDetailPage = () => {
               <p className="text-sm text-muted-foreground mt-1">{incident.description}</p>
             </div>
             <div className="flex items-center gap-2">
+              <ThreatBadge level={m.threatLevel} />
               <SeverityBadge severity={incident.severity} />
               <StatusBadge status={incident.status} />
             </div>
@@ -55,7 +57,6 @@ const IncidentDetailPage = () => {
             {incident.resolvedAt && <div><span className="text-muted-foreground block">Resolved At</span><span>{new Date(incident.resolvedAt).toLocaleString()}</span></div>}
           </div>
 
-          {/* Status Actions */}
           {currentUser?.role === 'admin' && incident.status !== 'resolved' && (
             <div className="flex gap-2 pt-2 border-t border-border">
               {incident.status === 'open' && (
@@ -68,6 +69,28 @@ const IncidentDetailPage = () => {
               </Button>
             </div>
           )}
+        </div>
+
+        {/* Metrics Panel */}
+        <div className="bg-card rounded-lg cyber-border p-6">
+          <h2 className="font-mono text-sm text-muted-foreground mb-4 flex items-center gap-2">
+            <BarChart3 className="w-4 h-4 text-primary" /> INCIDENT METRICS
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <MetricTile icon={<Target className="w-4 h-4" />} label="Classification Accuracy" value={`${m.classificationAccuracy}%`} color={m.classificationAccuracy >= 80 ? 'text-severity-low' : m.classificationAccuracy >= 50 ? 'text-severity-medium' : 'text-severity-high'} />
+            <MetricTile icon={<Gauge className="w-4 h-4" />} label="Confidence Score" value={`${m.confidenceScore}%`} color={m.confidenceScore >= 70 ? 'text-severity-low' : m.confidenceScore >= 40 ? 'text-severity-medium' : 'text-severity-high'} />
+            <MetricTile icon={<TrendingUp className="w-4 h-4" />} label="Risk Score" value={`${m.riskScore}/100`} color={m.riskScore >= 70 ? 'text-severity-high' : m.riskScore >= 40 ? 'text-severity-medium' : 'text-severity-low'} />
+            <MetricTile icon={<Zap className="w-4 h-4" />} label="Response Time" value={`${(m.responseTimeMs / 1000).toFixed(1)}s`} color={m.responseTimeMs < 2000 ? 'text-severity-low' : m.responseTimeMs < 5000 ? 'text-severity-medium' : 'text-severity-high'} />
+            <MetricTile icon={<BarChart3 className="w-4 h-4" />} label="Automation Rate" value={`${m.automationRate}%`} color="text-primary" />
+            <MetricTile icon={<ShieldAlert className="w-4 h-4" />} label="False Positive Prob." value={`${m.falsePositiveProbability}%`} color={m.falsePositiveProbability <= 10 ? 'text-severity-low' : m.falsePositiveProbability <= 30 ? 'text-severity-medium' : 'text-severity-high'} />
+          </div>
+
+          <div className="mt-4 pt-4 border-t border-border">
+            <div className="flex items-center gap-4 text-xs font-mono text-muted-foreground">
+              <span>Keywords matched: <span className="text-foreground">{m.keywordsMatched}/{m.totalKeywordsChecked}</span></span>
+              <span>Threat level: <ThreatBadge level={m.threatLevel} /></span>
+            </div>
+          </div>
         </div>
 
         {/* Playbook */}
@@ -118,5 +141,14 @@ const IncidentDetailPage = () => {
     </div>
   );
 };
+
+function MetricTile({ icon, label, value, color }: { icon: React.ReactNode; label: string; value: string; color: string }) {
+  return (
+    <div className="bg-secondary/30 rounded-lg p-3 space-y-1">
+      <div className="flex items-center gap-2 text-primary">{icon}<span className="text-[10px] font-mono text-muted-foreground">{label}</span></div>
+      <p className={`text-lg font-bold font-mono ${color}`}>{value}</p>
+    </div>
+  );
+}
 
 export default IncidentDetailPage;
