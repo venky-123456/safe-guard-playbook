@@ -39,9 +39,14 @@ const ReportIncidentPage = () => {
               <span className="text-muted-foreground">Classification:</span>
               <span className="text-foreground">{submitted.type.replace('_', ' ').toUpperCase()}</span>
             </div>
-            <div className="flex items-center justify-center gap-2">
+          <div className="flex items-center justify-center gap-2">
               <SeverityBadge severity={submitted.severity} />
               <StatusBadge status={submitted.status} />
+            </div>
+            <div className="grid grid-cols-3 gap-2 text-xs font-mono bg-secondary/30 rounded p-3">
+              <div><span className="text-muted-foreground block">Accuracy</span><span className="text-foreground">{submitted.metrics.classificationAccuracy}%</span></div>
+              <div><span className="text-muted-foreground block">Confidence</span><span className="text-foreground">{submitted.metrics.confidenceScore}%</span></div>
+              <div><span className="text-muted-foreground block">Risk Score</span><span className="text-foreground">{submitted.metrics.riskScore}/100</span></div>
             </div>
             {submitted.responseLogs.length > 0 && (
               <div className="text-left mt-4 bg-secondary/50 rounded p-3 space-y-1">
