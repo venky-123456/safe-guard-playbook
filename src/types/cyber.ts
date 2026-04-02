@@ -12,6 +12,18 @@ export type IncidentSeverity = 'low' | 'medium' | 'high';
 export type IncidentStatus = 'open' | 'investigating' | 'resolved';
 export type IncidentType = 'phishing' | 'malware' | 'unauthorized_access' | 'other';
 
+export interface IncidentMetrics {
+  confidenceScore: number;       // 0-100 classification confidence
+  riskScore: number;             // 0-100 overall risk assessment
+  keywordsMatched: number;       // number of keywords matched
+  totalKeywordsChecked: number;  // total keywords checked
+  classificationAccuracy: number; // estimated accuracy percentage
+  responseTimeMs: number;        // time to first automated response (ms)
+  automationRate: number;        // % of steps that are automated
+  threatLevel: 'critical' | 'elevated' | 'moderate' | 'low';
+  falsePositiveProbability: number; // 0-100
+}
+
 export interface Incident {
   id: string;
   title: string;
@@ -24,6 +36,7 @@ export interface Incident {
   resolvedAt?: string;
   assignedTo?: string;
   responseLogs: ResponseLog[];
+  metrics: IncidentMetrics;
 }
 
 export interface Playbook {
