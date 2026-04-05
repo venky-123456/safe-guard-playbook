@@ -1,6 +1,7 @@
 import { useApp } from '@/context/AppContext';
 import { Link } from 'react-router-dom';
-import { Shield, ArrowLeft, Filter } from 'lucide-react';
+import { ArrowLeft, Filter } from 'lucide-react';
+import vignanLogo from '@/assets/vignanlogo.png';
 import { Button } from '@/components/ui/button';
 import { SeverityBadge, StatusBadge } from '@/pages/DashboardPage';
 import { useState } from 'react';
