@@ -1,6 +1,7 @@
 import { useApp } from '@/context/AppContext';
 import { Link } from 'react-router-dom';
-import { Shield, AlertTriangle, FileText, Activity, LogOut, Settings, Target, Gauge, Zap, TrendingUp, BarChart3 } from 'lucide-react';
+import { AlertTriangle, FileText, Activity, LogOut, Settings, Target, Gauge, Zap, TrendingUp, BarChart3 } from 'lucide-react';
+import vignanLogo from '@/assets/vignanlogo.png';
 import { Button } from '@/components/ui/button';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, RadialBarChart, RadialBar } from 'recharts';
 
@@ -61,7 +62,7 @@ const DashboardPage = () => {
       <header className="border-b border-border bg-card/80 backdrop-blur sticky top-0 z-10">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Shield className="w-5 h-5 text-primary" />
+            <img src={vignanLogo} alt="Logo" className="w-5 h-5 object-contain" />
             <span className="font-mono text-primary font-bold tracking-wider text-sm">CIRP</span>
           </div>
           <nav className="flex items-center gap-1">

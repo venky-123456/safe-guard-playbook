@@ -1,6 +1,7 @@
 import { useApp } from '@/context/AppContext';
 import { useParams, Link } from 'react-router-dom';
-import { Shield, ArrowLeft, Zap, User, Clock, AlertTriangle, Target, Gauge, TrendingUp, BarChart3, ShieldAlert } from 'lucide-react';
+import { ArrowLeft, Zap, User, Clock, AlertTriangle, Target, Gauge, TrendingUp, BarChart3, ShieldAlert } from 'lucide-react';
+import vignanLogo from '@/assets/vignanlogo.png';
 import { Button } from '@/components/ui/button';
 import { SeverityBadge, StatusBadge, ThreatBadge } from '@/pages/DashboardPage';
 import { playbooks } from '@/data/playbooks';
@@ -30,7 +31,7 @@ const IncidentDetailPage = () => {
       <header className="border-b border-border bg-card/80 backdrop-blur sticky top-0 z-10">
         <div className="container mx-auto px-4 py-3 flex items-center gap-3">
           <Button variant="ghost" size="sm" asChild><Link to="/incidents"><ArrowLeft className="w-4 h-4" /></Link></Button>
-          <Shield className="w-5 h-5 text-primary" />
+          <img src={vignanLogo} alt="Logo" className="w-5 h-5 object-contain" />
           <span className="font-mono text-primary font-bold tracking-wider text-sm">{incident.id}</span>
         </div>
       </header>

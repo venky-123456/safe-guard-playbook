@@ -1,6 +1,7 @@
 import { useApp } from '@/context/AppContext';
 import { Link } from 'react-router-dom';
-import { Shield, ArrowLeft, Users, BookOpen, AlertTriangle } from 'lucide-react';
+import { ArrowLeft, Users, BookOpen, AlertTriangle } from 'lucide-react';
+import vignanLogo from '@/assets/vignanlogo.png';
 import { Button } from '@/components/ui/button';
 import { SeverityBadge, StatusBadge } from '@/pages/DashboardPage';
 import { playbooks } from '@/data/playbooks';
@@ -27,7 +28,7 @@ const AdminDashboardPage = () => {
       <header className="border-b border-border bg-card/80 backdrop-blur sticky top-0 z-10">
         <div className="container mx-auto px-4 py-3 flex items-center gap-3">
           <Button variant="ghost" size="sm" asChild><Link to="/dashboard"><ArrowLeft className="w-4 h-4" /></Link></Button>
-          <Shield className="w-5 h-5 text-primary" />
+          <img src={vignanLogo} alt="Logo" className="w-5 h-5 object-contain" />
           <span className="font-mono text-primary font-bold tracking-wider text-sm">ADMIN DASHBOARD</span>
         </div>
       </header>
