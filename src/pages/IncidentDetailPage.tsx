@@ -1,6 +1,7 @@
 import { useApp } from '@/context/AppContext';
 import { useParams, Link } from 'react-router-dom';
-import { Shield, ArrowLeft, Zap, User, Clock, AlertTriangle, Target, Gauge, TrendingUp, BarChart3, ShieldAlert } from 'lucide-react';
+import { ArrowLeft, Zap, User, Clock, AlertTriangle, Target, Gauge, TrendingUp, BarChart3, ShieldAlert } from 'lucide-react';
+import vignanLogo from '@/assets/vignanlogo.png';
 import { Button } from '@/components/ui/button';
 import { SeverityBadge, StatusBadge, ThreatBadge } from '@/pages/DashboardPage';
 import { playbooks } from '@/data/playbooks';
