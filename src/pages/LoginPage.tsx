@@ -24,8 +24,8 @@ const LoginPage = () => {
     <div className="min-h-screen flex items-center justify-center cyber-grid-bg">
       <div className="w-full max-w-md mx-4">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-lg bg-primary/10 cyber-border mb-4">
-            <Shield className="w-8 h-8 text-primary" />
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-lg bg-primary/10 cyber-border mb-4 overflow-hidden">
+            <img src={vignanLogo} alt="Vignan Logo" className="w-12 h-12 object-contain" />
           </div>
           <h1 className="text-2xl font-bold font-mono text-primary tracking-wider">CYBER INCIDENT PORTAL</h1>
           <p className="text-muted-foreground text-sm mt-1">Security Operations Center</p>
