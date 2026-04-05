@@ -1,6 +1,7 @@
 import { useApp } from '@/context/AppContext';
 import { Link } from 'react-router-dom';
-import { Shield, AlertTriangle, FileText, Activity, LogOut, Settings, Target, Gauge, Zap, TrendingUp, BarChart3 } from 'lucide-react';
+import { AlertTriangle, FileText, Activity, LogOut, Settings, Target, Gauge, Zap, TrendingUp, BarChart3 } from 'lucide-react';
+import vignanLogo from '@/assets/vignanlogo.png';
 import { Button } from '@/components/ui/button';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, RadialBarChart, RadialBar } from 'recharts';
 
