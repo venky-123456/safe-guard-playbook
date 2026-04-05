@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useApp } from '@/context/AppContext';
 import { useNavigate, Link } from 'react-router-dom';
-import { Shield, ArrowLeft, Zap, CheckCircle } from 'lucide-react';
+import { ArrowLeft, Zap, CheckCircle } from 'lucide-react';
+import vignanLogo from '@/assets/vignanlogo.png';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
